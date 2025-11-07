@@ -2,7 +2,7 @@ from cnn import AudioCNN
 from training import class_map
 import torch
 
-# from dataset import chunked_mels_from_file
+from dataset import chunked_mels_from_file
 import librosa
 import numpy as np
 
@@ -38,7 +38,9 @@ def audio_to_mel_tensor(
 
 
 def infer(filepath, model, class_map):
+
     x = audio_to_mel_tensor(filepath)
+
     with torch.no_grad():
         logits = model(x)
         probs = torch.softmax(logits, dim=1)
@@ -51,4 +53,5 @@ def infer(filepath, model, class_map):
     print("Prediction:", predicted_label, "confidence:", confidence)
 
 
+infer("./data/normal/road.mp3", model, class_map)
 infer("./data/bosozoku/1.mp3", model, class_map)

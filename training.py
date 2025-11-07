@@ -17,7 +17,7 @@ optimizer = torch.optim.Adam(model.parameters(), lr=1e-3)
 
 
 def train():
-    for epoch in range(10):
+    for epoch in range(100):
         total_loss = 0
 
         for mel, label in loader:
@@ -37,3 +37,7 @@ def train():
     save_path = "model.pth"
     torch.save(model.state_dict(), save_path)
     print("Model saved to:", save_path)
+
+
+if __name__ == "__main__":
+    train()

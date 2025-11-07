@@ -1,3 +1,5 @@
 librosa
 matplotlib
 pathlib
+torch
+

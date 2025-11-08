@@ -3,10 +3,10 @@ import torch
 from dataset import MelChunksDataset
 from cnn import AudioCNN
 import torch.nn as nn
+from config import class_map
 
 device = "cuda" if torch.cuda.is_available() else "cpu"
 
-class_map = {"bosozoku": 0, "normal": 1}
 dataset = MelChunksDataset("data", class_map)
 loader = DataLoader(dataset, batch_size=16, shuffle=True)
 
@@ -17,7 +17,7 @@ optimizer = torch.optim.Adam(model.parameters(), lr=1e-3)
 
 
 def train():
-    for epoch in range(100):
+    for epoch in range(50):
         total_loss = 0
 
         for mel, label in loader:

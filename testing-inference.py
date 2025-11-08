@@ -31,5 +31,5 @@ def infer(filepath, model, class_map):
         print("Prediction:", predicted_label, "confidence:", confidence)
 
 
-infer("./data/normal/road.mp3", model, class_map)
+infer("./data/normal/road2.wav", model, class_map)
 infer("./data/bosozoku/1.mp3", model, class_map)

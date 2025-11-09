@@ -3,8 +3,8 @@ from config import class_map
 import torch
 
 from dataset import chunked_mels_from_file
-import numpy as np
 
+device = "cuda" if torch.cuda.is_available() else "cpu"
 
 model = AudioCNN(num_classes=len(class_map))
 model.load_state_dict(torch.load("model.pth", map_location="cpu"))
@@ -18,6 +18,8 @@ def infer(filepath, model, class_map):
     print(f"file {filepath} has {len(chunks)} chunks")
     for chunk in chunks:
         x = torch.tensor(chunk, dtype=torch.float32).unsqueeze(0).unsqueeze(0)
+
+        print(x.shape)
 
         with torch.no_grad():
             logits = model(x)  # Prediction here
